@@ -1,0 +1,27 @@
+{
+  "name": "maneuver-docs",
+  "version": "0.0.1",
+  "description": "documentation for maneuver in HTML",
+  "author": "Nick Baroni",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rhythnic/maneuver-docs.git"
+  },
+  "devDependencies": {
+    "axis": "~0.3.0",
+    "gulp": "~3.8.11",
+    "gulp-connect": "~2.2.0",
+    "gulp-stylus": "~2.0.1",
+    "jeet": "~6.1.2",
+    "maneuver": "0.0.1",
+    "nib": "~1.1.0",
+    "rupture": "~0.6.1",
+    "stylus": "*"
+  },
+  "scripts": {
+    "start": "gulp"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
+}
