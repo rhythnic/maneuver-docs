@@ -13,8 +13,9 @@
   <div class="wrap open">
     <nav class="menu">
       <ul>
-        <li><a href="#offcanvas">Offcanvas</a></li>
-        <li><a href="#toggle">Toggle</a></li>
+        <li><a href="#offcanvas">offcanvas</a></li>
+        <li><a href="#toggle">toggle</a></li>
+        <li><a href="#flipcard">flipCard</a></li>
       </ul>
     </nav>
     <main class="content">
@@ -72,7 +73,7 @@ $('button').on('click', function (e) {
           </div> <!-- end of div.code -->
           <div class="specification">
             <h3>Specification</h3>
-            <p>There are 2 mixins for creating an offcanvas menu:  offcanvas() and offcanvas_multi().  Multi allows you to create 1-4 offcanvas menus.  Both have similar parameters.  The paramters all have default values unless specified.</p>
+            <p>There are 2 mixins for creating an offcanvas menu:  offcanvas() and offcanvasMulti().  Multi allows you to create 1-4 offcanvas menus.  Both have similar parameters.  The paramters all have default values unless specified.</p>
             <div>
             <div class="offcanvas-single">
               <h4>offcanvas()</h4>
@@ -82,47 +83,57 @@ $('button').on('click', function (e) {
                 <dd>menu position.  Options are 'top', 'right', 'bottom', or 'left'</dd>
                 <dt>size: 15em</dt>
                 <dd>width of left/right menus, height of top/bottom menus</dd>
-                <dt>push: 40em</dt>
-                <dd>min screen width (left/right menu) or height (top/bottom menu) at which menu will push content, instead of going on top of it</dd>
+                <dt>share: 40em</dt>
+                <dd>min screen width at which menu will share the container with content when menu is open</dd>
                 <dt>show: 80em</dt>
-                <dd>min screen width (left/right menu) or height (top/bottom menu) at which menu can't be hidden.</dd>
+                <dd>min screen width at which menu can't be hidden.</dd>
+                <dt>push: 0</dt>
+                <dd>only applies when share or show don't apply.  set to 0 to have menu go on top of the content.
+                    set to 1 to have the menu push the content.</dd>
                 <dt>menu: '.menu'</dt>
                 <dd>css selector for the menu container</dd>
                 <dt>content: '.content'</dt>
                 <dd>css selector for the content container</dd>
-                <dt>open_class: 'open'</dt>
+                <dt>open: 'open'</dt>
                 <dd>class that gets toggled on the parent container for open/close</dd>
+                <dt>transition: all 0.3s ease</dt>
+                <dd>css rule for transitions</dd>
               </dl>
             </div>
               <div class="notes">
                 <h3>Things to note:</h3>
                 <ul>
-                  <li>To disable push or show, set it to 0.</li>
-                  <li>To enable push or show at any screen size, set it to 0em.</li>
+                  <li>To disable share or show, set it to 0.</li>
+                  <li>To enable share or show at any screen size, set it to 0em.</li>
                   <li>The offcanvas menu and content adopt the height of the parent element.  For a full page offcanvas menu, you'll need to specify html, body, and your parent element as height 100%.</li>
                   <li>In the previous example, all of the default selectors were used, including .menu-left, .content, and .open.  These can all be specified.</li>
-                  <li>Offcanvas doesn't have any css rules for the toggle button, just the menu and content containers.</li>
+                  <li>Offcanvas doesn't have any css rules for the toggle buttons, because there are too many posibilites for where they could put put.
+                  </li>
                 </ul>
               </div>
             </div>
             
             <div class="offcanvas-multi">
-              <h4>offcanvas_multi()</h4>
-              <p>Offcanvas_multi has basically the same parameters, but there is no 'side' parameter. Instead, you should declare settings for all 4 sides.  You can specify all 4 parameters similar to how you would write css shorthand, "(top right bottom left)".  The default of offcanvas_multi is a left and right menu, both with the same defaults as offcanvas(). Be careful in calling offcanvas_multi.  It's better to specify more than is necessary than not enough.</p>
+              <h4>offcanvasMulti()</h4>
+              <p>OffcanvasMulti has basically the same parameters, but there is no 'side' parameter. Instead, you should declare settings for all 4 sides.  You can specify all 4 parameters similar to how you would write css shorthand, "(top right bottom left)".  The default of offcanvasMulti is a left and right menu, both with the same defaults as offcanvas(). Be careful in calling offcanvasMulti.  It's better to specify more than is necessary than not enough.</p>
               <h5>parameters and defaults:</h5>
               <dl>
                 <dt>size</dt>
                 <dd>(0 15em 0 15em)</dd>
-                <dt>push</dt>
+                <dt>share</dt>
                 <dd>(0 40em 0 40em)</dd>
                 <dt>show</dt>
                 <dd>(0 80em 0 80em)</dd>
+                <dt>push</dt>
+                <dd>(0 0 0 0)</dd>
                 <dt>menu</dt>
                 <dd>('.menu-top' '.menu-right' '.menu-bottom' '.menu-left')</dd>
                 <dt>content</dt>
                 <dd>'.content'</dd>
-                <dt>open_class)</dt>
+                <dt>open</dt>
                 <dd>('open-top' 'open-right' 'open-bottom' 'open-left')</dd>
+                <dt>transition</dt>
+                <dd>all 0.3s ease</dd>
               </dl>
             </div>
           </div>
@@ -131,19 +142,19 @@ $('button').on('click', function (e) {
             <div class="oc-examples">
               <div class="oc-1">
                 <nav>
-<pre><code>offcanvas(side: 'top', size: 8em, push: 0, show: 0, menu: 'nav', content: '.main')</code></pre>
+<pre><code>offcanvas(side: 'top', size: 8em, share: 0, show: 0, menu: 'nav', content: '.main')</code></pre>
                 </nav>
                 <div class="main"><button>Toggle Top</button></div>
               </div>
               <div class="oc-2">
                 <nav class="menu">
-<pre><code>offcanvas(side: 'right', size: 12em, push: 0em, show: 0)</code></pre>
+<pre><code>offcanvas(side: 'right', size: 12em, share: 0em, show: 0)</code></pre>
                 </nav>
                 <div class="content"><button>Toggle Right</button></div>
               </div>
               <div class="oc-3">
                 <nav class="menu-top">
-<pre><code>offcanvas_multi(size: (10em 0 5em 0), push: (0 0 0 0), show: (0 0 0 0))</code></pre>
+<pre><code>offcanvasMulti(size: (10em 0 5em 0), share: (0 0 0 0), show: (0 0 0 0))</code></pre>
                 </nav>
                 <footer class="menu-bottom"></footer>
                 <div class="content">
@@ -237,6 +248,63 @@ $('button').on('click', function (e) {
                 </div>
               </div>
             </div>
+        </section>
+        <section id="flipcard">
+          <h2>Flipcard</h2>
+          <p class="description">
+            Flipcard is a two sided card that flips around either the X or Y axis.
+          </p>
+          <div class="flipcard1"">
+            <div>
+              <div><p>front content</p></div>
+              <div><p>back content</p></div>
+            </div>
+          </div>
+          <div class="code">
+            <div>
+              <h4>HTML</h4>
+<pre class="html"><code>
+&lt;div class="my-card"&gt;
+  &lt;div&gt;
+    &lt;div&gt;front content&lt;/div&gt;
+    &lt;div&gt;back content&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+            </div>
+            <div>
+              <h4>Stylus</h4>
+<pre class="stylus"><code>
+.my-card
+    flipCard()
+</code></pre>
+            </div>
+            <div>
+              <h4>JavaScript</h4>
+<pre class="js"><code class="js">
+$('.my-card').on('click', function (e) {
+  $(e.currentTarget).toggleClass('flip');
+})
+</code></pre>
+            </div>
+          </div> <!-- end of div.code -->
+          <div class="specification">
+            <h3>Specification</h3>
+            <div>
+              <div class="flipcard">
+                <h4>flipCard()</h4>
+                <h5>parameters and defaults:</h5>
+                <dl>
+                  <dt>axis:Y</dt>
+                  <dd>the axis about which the card rotates (X or Y)</dd>
+                  <dt>flip: 'flip'</dt>
+                  <dd>the class that causes the parent container to flip</dd>
+                  <dt>speed: 0.6s</dt>
+                  <dd>the speed it takes for the card to flip</dd>
+                  <dt>perspective: 1000</dt>
+                  <dd>css 3D perspective, the bigger the number, the further away it seems you are</dd>
+                </dl>
+              </div>
         </section>
       </article>
     </main>

@@ -1,6 +1,6 @@
 {
   "name": "maneuver-docs",
-  "version": "0.0.1",
+  "version": "0.0.11",
   "description": "documentation for maneuver in HTML",
   "author": "Nick Baroni",
   "repository": {
@@ -13,7 +13,7 @@
     "gulp-connect": "~2.2.0",
     "gulp-stylus": "~2.0.1",
     "jeet": "~6.1.2",
-    "maneuver": "0.0.1",
+    "maneuver": "0.0.11",
     "nib": "~1.1.0",
     "rupture": "~0.6.1",
     "stylus": "*"
