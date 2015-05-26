@@ -1,0 +1,105 @@
+@require 'main'
+
+normalize-css()
+typography()
+
+/**********************************
+    Global settings
+**********************************/
+
+html, body
+  padding 0
+  margin 0
+  height 100%
+  background lighten(yellow, 90%)
+  
+article
+  max-width 100em
+  margin 0 auto
+
+pre
+  pre()
+code
+  code()
+
+dt
+  font-weight bold
+
+
+
+
+
+/**********************************
+    Style classes
+**********************************/
+
+.description
+  background #d8d8d8
+
+section.mixin
+  margin 1em
+  header
+    h2
+      margin 0
+    p
+      margin-top 0
+  .tabs
+    margin-top 1em
+    tabs()
+    & > div:first-child span
+      background pink
+      margin 0 0.5em 0 0
+      padding 0.3em 0.6em
+      +above(mobile)
+        padding 0.5em 1em
+        margin 0 1em
+      &.active
+        background #98CDDD
+    & > div:last-child
+      background #98CDDD
+      shadow(3)
+      & > section
+        padding 1em
+
+
+
+.menu-btn
+  padding: 0 0.2em 0.2em
+  border-radius 0.2em
+  position absolute
+  z-index 1000
+  border none
+  box-shadow 2px 2px 2px gray
+  i
+    font-size 2.3em
+    position relative
+    top 0.05em
+    color #000
+  
+.notes
+  box-sizing border-box
+  padding 1em
+  +above(laptop)
+    padding 2em
+    margin-top 3em
+  h3
+    margin 0
+  
+/**********************************
+    Wrap
+**********************************/
+
+.wrap
+  height 100%
+  offcanvas(size: 20em, show: 0, share: 50em)
+  & > .menu
+    z-index 10
+  &.open
+    #toggle-left-offcanvas
+      left 20em
+#toggle-left-offcanvas
+  position fixed
+  background #fff
+  transition all 0.3s ease
+  left 0
+  

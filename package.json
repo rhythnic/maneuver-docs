@@ -16,7 +16,8 @@
     "maneuver": "0.0.11",
     "nib": "~1.1.0",
     "rupture": "~0.6.1",
-    "stylus": "*"
+    "stylus": "*",
+    "gulp-concat": "~2.5.2"
   },
   "scripts": {
     "start": "gulp"

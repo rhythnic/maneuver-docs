@@ -1,0 +1,60 @@
+<section id="tabs" class="mixin">
+  <header>
+    <h2>Tabs</h2>
+    <p>
+      The tabs mixin configures a tab navigation and a tab content area, respectively the first and second (and only) children of the element where the tabs() mixin is used.
+    </p>
+  </header>
+  <div class="tabs">
+    <div>
+      <span>Use</span>
+      <span>Params</span>
+      <span>Notes</span>
+      <span>Examples</span>
+    </div>
+    <div>
+      <section class="basic-use">
+        <h3>Tabs - Basic Use</h3>
+        <div>
+          <div>
+              <h4>HTML</h4>
+<pre class="html"><code>
+&lt;div class="tabs"&gt;
+  &lt;div&gt;
+    &lt;span&gt;Tab 1&lt;/span&gt;
+    &lt;span&gt;Tab 2&lt;/span&gt;
+    &lt;span&gt;Tab 3&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;div&gt;Tab 1 content.&lt;/div&gt;
+    &lt;div&gt;Tab 2 content.&lt;/div&gt;
+    &lt;div&gt;Tab 3 content.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+            </div>
+            <div>
+              <h4>Stylus</h4>
+<pre class="stylus"><code>
+.tabs
+  tabs()
+</code></pre>
+            </div>
+            <div>
+              <h4>jQuery</h4>
+<pre class="js"><code class="js">
+$('.tabs > div:first-child').on('click', function (e) {
+  var index = $(e.target).index();
+  $(this).next().children().removeClass('active').eq(index).addClass('active');
+  $(this).children().removeClass('active').eq(index).addClass('active');
+});
+</code></pre>
+            </div>
+        </div>
+      </section>
+      <section>Params content</section>
+      <section>Notes content</section>
+      <section>Examples content</section>
+    </div>
+  </div>
+</section>
