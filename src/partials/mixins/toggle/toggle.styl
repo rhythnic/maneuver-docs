@@ -1,26 +1,7 @@
 @require '../../../main'
 
 #toggle
-  .code
-    & > div
-      +above(laptop)
-        col(1/2)
-    h4
-      color darken(red, 30%)
-  .specification
-    clear both
-      
-  .notes, .toggle
-    +above(laptop)
-      col(1/2)
-  .heat-toggle
-    toggle()
-  .examples
-    clear both
-.toggle-1 .switch
-  toggle(switch: (#6C7F7E #000), switch_on: (lighten(#6C7F7E, 50%) #fff), off: (#DC3522 #000 'NO'), on: (#D9CB9E #fff 'YES'))
-.toggle-2 .switch
-  width 15em
-  height 5em
-  font-size: 2em
-  toggle(side_width: 3em)
+  section.example
+    width 15em
+    .my-toggle
+      toggle(sideWidth: 60px, width:10em, text: ('AUTO' 'ON'))

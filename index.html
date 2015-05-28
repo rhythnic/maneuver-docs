@@ -15,16 +15,17 @@
   <div class="wrap open">
     <!-- inject:sidebar:html -->
     <nav class="menu">
+      <h2 class="hide">Page navigation</h2>
       <ul>
+        <li><a href="#tabs">tabs</a></li>
         <li><a href="#offcanvas">offcanvas</a></li>
         <li><a href="#offcanvasMulti">offcanvasMulti</a></li>
-        <li><a href="#tabs">tabs</a></li>
-        <li><a href="#flipcard">flipCard</a></li>
+        <li><a href="#flipCard">flipCard</a></li>
         <li><a href="#toggle">toggle</a></li>
       </ul>
     </nav>
     <!-- endinject -->
-    <main class="content">
+    <div class="content">
       <button type="button" class="menu-btn" id="toggle-left-offcanvas"><i class="fa fa-bars"></i></button>
       <!-- inject:header:html -->
       <header id="app-header">
@@ -36,23 +37,26 @@
       	</ul>
       </header>
       <!-- endinject -->
+      <!-- inject:about:html -->
+      <section id="about">
+        <h2 class="hide">About Maneuver</h2>
+        <p>
+          Maneuver is a collection of stylus mixins to facilitate creating interactive css elements.
+          Some of the mixins help with creating the layout, most will require coordinating HTML and JavaScript
+          along with the mixins, and all of them will help you to create the effect of movement and transition
+          on the page.
+        </p> 
+      </section>
+      <!-- endinject -->
       <article>
-        <!-- inject:about:html -->
-        <section id="about">
-          <p>
-            Maneuver is a collection of stylus mixins to facilitate creating interactive css elements.
-            Some of the mixins help with creating the layout, most will require coordinating HTML and JavaScript
-            along with the mixins, and all of them will help you to create the effect of movement and transition
-            on the page.
-          </p> 
-        </section>
-        <!-- endinject -->
+        <h2 class="hide">Maneuver Mixins</h2>
         <!-- inject:tabs:html -->
         <section id="tabs" class="mixin">
           <header>
-            <h2>Tabs</h2>
+            <h2>tabs</h2>
             <p>
-              The tabs mixin configures a tab navigation and a tab content area, respectively the first and second (and only) children of the element where the tabs() mixin is used.
+              The tabs mixin reveals the active content by adding/removing classes on the content element.  It is up to you how you want to coordinate the
+              navigation with the content.  In these examples, the jQuery depends on the index of the tab in the navigation matching the index of the content.
             </p>
           </header>
           <div class="tabs">
@@ -60,57 +64,351 @@
               <span>Use</span>
               <span>Params</span>
               <span>Notes</span>
-              <span>Examples</span>
             </div>
             <div>
-              <section class="basic-use">
-                <h3>Tabs - Basic Use</h3>
+            
+              <section class="basic-use active">
+                <h3>Basic Use</h3>
                 <div>
-                  <div>
-                      <h4>HTML</h4>
-        <pre class="html"><code>
-        &lt;div class="tabs"&gt;
-          &lt;div&gt;
-            &lt;span&gt;Tab 1&lt;/span&gt;
-            &lt;span&gt;Tab 2&lt;/span&gt;
-            &lt;span&gt;Tab 3&lt;/span&gt;
-          &lt;/div&gt;
-          &lt;div&gt;
-            &lt;div&gt;Tab 1 content.&lt;/div&gt;
-            &lt;div&gt;Tab 2 content.&lt;/div&gt;
-            &lt;div&gt;Tab 3 content.&lt;/div&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-        </code></pre>
-                    </div>
-                    <div>
-                      <h4>Stylus</h4>
-        <pre class="stylus"><code>
-        .tabs
-          tabs()
-        </code></pre>
-                    </div>
-                    <div>
-                      <h4>jQuery</h4>
-        <pre class="js"><code class="js">
-        $('.tabs > div:first-child').on('click', function (e) {
-          var index = $(e.target).index();
-          $(this).next().children().removeClass('active').eq(index).addClass('active');
-          $(this).children().removeClass('active').eq(index).addClass('active');
-        });
-        </code></pre>
-                    </div>
+                  <div class='html'>
+                    <h4>HTML</h4>
+                    <pre><code>&lt;div class="tabs"&gt;<br>  &lt;div&gt;<br>    &lt;span&gt;Tab 1&lt;/span&gt;<br>    &lt;span&gt;Tab 2&lt;/span&gt;<br>    &lt;span&gt;Tab 3&lt;/span&gt;<br>  &lt;/div&gt;<br>  &lt;div&gt;<br>    &lt;div&gt;Tab 1 content&lt;/div&gt;<br>    &lt;div&gt;Tab 2 content&lt;/div&gt;<br>    &lt;div&gt;Tab 3 content&lt;/div&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;</code></pre>
+                  </div>
+                  <div class='stylus'>
+                    <h4>Stylus</h4>
+                    <pre><code>.tabs<br>  tabs()</code></pre>
+                  </div>
+                </div>
+                <div class='jquery'>
+                  <h4>jQuery</h4>
+                  <pre><code>$('.tabs > div:first-child').on('click', function (e) {<br>  var index = $(e.target).index();<br>  $(this).next().children().removeClass('active').eq(index).addClass('active');<br>  $(this).children().removeClass('active').eq(index).addClass('active');<br>});</code></pre>
                 </div>
               </section>
-              <section>Params content</section>
-              <section>Notes content</section>
-              <section>Examples content</section>
+        
+              <section class="params">
+                <h2>Parameters and defaults</h2>
+                <p>tabs(side:'top', height:auto, navSize:auto, fade:0.3s, active:'active')</p>
+                <dl>
+                  <dt>side</dt>
+                  <dd>where to place the tab navigation.  Options are top, bottom, left, right.  Left and right are vertical.</dd>
+                  <dt>height</dt>
+                  <dd>the height of the parent element (element that tabs() is called on).</dd>
+                  <dt>navSize</dt>
+                  <dd>height(top/bottom) or width(left/right) of the tab navigation</dd>
+                  <dt>fade</dt>
+                  <dd>fade speed, set to 0 or false to disable.</dd>
+                  <dt>active</dt>
+                  <dd>the active class, added to tab content element to reveal content</dd>
+                </dl>
+              </section>
+        
+              <section class="notes">
+                <h2>Notes</h2>
+                <ul>
+                  <li>Tabs uses flexbox (not supported by IE9)</li>
+                  <li>No styling (padding/margin/border) set on navigation tabs.</li>
+                  <li>Tabs needs to be aware of any specified height on the parent element, so it's included as a parameter.</li>
+                </ul>
+              </section>
+            </div>
+          </div>
+        </section>
+        <!-- endinject -->
+        <!-- inject:offcanvas:html -->
+        <section id="offcanvas" class="mixin">
+          <header>
+            <h2>offcanvas</h2>
+            <p>
+              The offcanvas mixin allows you to create a menu that hides outside of it's parent element, and opens/closes by adding/removing a class
+              on the parent element.<br>The menu on the left side of this page is an example of the offcanvas mixin.
+            </p>
+          </header>
+          <div class="tabs">
+            <div>
+              <span>Use</span>
+              <span>Params</span>
+              <span>Notes</span>
+            </div>
+            <div>
+            
+              <section class="basic-use active">
+                <h3>Basic Use</h3>
+                <div>
+                  <div class='html'>
+                    <h4>HTML</h4>
+                    <pre><code>&lt;div class="container"&gt;<br>  &lt;div class="menu-left"&gt;Left menu&lt;/div&gt;<br>  &lt;div class="content"&gt;<br>    &lt;button&gt;Toggle menu&lt;/button&gt;<br>    &lt;article&gt;My content&lt;/article&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;</code></pre>
+                  </div>
+                  <div class='stylus'>
+                    <h4>Stylus</h4>
+                    <pre><code>.container<br>  offcanvas()</code></pre>
+                  </div>
+                </div>
+                <div class='jquery'>
+                  <h4>jQuery</h4>
+                  <pre><code>$('button').on('click', function (e) {<br>  $('.container').toggleClass('open');<br>})</code></pre>
+                </div>
+              </section>
+        
+              <section class="params">
+                <h2>Parameters and defaults</h2>
+                <p>params(side:'left', size:15em, share:40em, show:80em, push:0, menu:'.menu', content:'.content', open: 'open', transition:all 03s ease)</p>
+                <dl>
+                  <dt>side</dt>
+                  <dd>Orientation of offcanvas menu.  Options are 'top', 'right', 'bottom', or 'left'</dd>
+                  <dt>size</dt>
+                  <dd>Width of left/right menus, height of top/bottom menus</dd>
+                  <dt>share</dt>
+                  <dd>Minimum screen width at which menu will share the container with content when menu is open.  Set to 0 to disable.</dd>
+                  <dt>show</dt>
+                  <dd>Minimum screen width at which menu can't be hidden.  Set to 0 to disable.</dd>
+                  <dt>push</dt>
+                  <dd>Only applies when share or show don't apply.  0 or false causes menu to overlap content.  1 or true causes
+                      menu to push content offscreen</dd>
+                  <dt>menu</dt>
+                  <dd>css selector for the menu element</dd>
+                  <dt>content</dt>
+                  <dd>css selector for the content element</dd>
+                  <dt>open</dt>
+                  <dd>class that gets toggled on the parent element for open/close</dd>
+                  <dt>transition</dt>
+                  <dd>transitions setting</dd>
+                </dl>
+              </section>
+        
+              <section class="notes">
+                <h2>Notes</h2>
+                <ul>
+                  <li>To disable share or show, set it to 0.</li>
+                  <li>To enable share or show at any screen size, set it to 0em.</li>
+                  <li>The offcanvas menu and content adopt the height of the parent element.
+                      For a full page offcanvas menu, you'll need to set height 100% on the parent element and all elements up through &lt;html&gt;.</li>
+                  <li>Offcanvas doesn't have any css rules for the toggle buttons, but it's on the roadmap.</li>
+                </ul>
+              </section>
+            </div>
+          </div>
+        </section>
+        <!-- endinject -->
+        <!-- inject:offcanvasMulti:html -->
+        <section id="offcanvasMulti" class="mixin">
+          <header>
+            <h2>offcanvasMulti</h2>
+            <p>
+              The offcanvasMulti mixin is similar to offcanvas, except that you can create up to 4 offcanvas menus inside of the parent element.
+            </p>
+          </header>
+          <div class="tabs">
+            <div>
+              <span>Use</span>
+              <span>Params</span>
+              <span>Notes</span>
+            </div>
+            <div>
+            
+              <section class="basic-use active">
+                <h3>Basic Use</h3>
+                <div>
+                  <div class='html'>
+                    <h4>HTML</h4>
+                    <pre><code>&lt;div class="container"&gt;<br>  &lt;div class="menu-left"&gt;Left menu&lt;/div&gt;<br>  &lt;div class="menu-right"&gt;Right menu&lt;/div&gt;<br>  &lt;div class="content"&gt;<br>    &lt;button data-menu="left"&gt;Toggle left menu&lt;/button&gt;<br>    &lt;button data-menu="right"&gt;Toggle right menu&lt;/button&gt;<br>    &lt;article&gt;My content&lt;/article&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;</code></pre>
+                  </div>
+                  <div class='stylus'>
+                    <h4>Stylus</h4>
+                    <pre><code>.container<br>  offcanvasMulti()</code></pre>
+                  </div>
+                </div>
+                <div class='jquery'>
+                  <h4>jQuery</h4>
+                  <pre><code>$('button').on('click', function (e) {<br>  var menu = $(this).data('menu');<br>  $('.container').toggleClass('open-'+menu);<br>})</code></pre>
+                </div>
+              </section>
+        
+              <section class="params">
+                <h2>Parameters and defaults</h2>
+                <p>Please refer to <a href="#offcanvas">offcanvas</a> for an explanation of each parameter.  Most parameters in offcanvasMulti
+                   are an array of 4 values. In traditional css shorthand style, the order of the array (top right bottom left).
+                   The default values are listed below.</p>
+                <dl>
+                  <dt>size</dt>
+                  <dd>(0 15em 0 15em)</dd>
+                  <dt>share</dt>
+                  <dd>(0 40em 0 40em)</dd>
+                  <dt>show</dt>
+                  <dd>(0 80em 0 80em)</dd>
+                  <dt>push</dt>
+                  <dd>(0 0 0 0)</dd>
+                  <dt>menu</dt>
+                  <dd>('.menu-top' '.menu-right' '.menu-bottom' '.menu-left')</dd>
+                  <dt>content</dt>
+                  <dd>'.content'</dd>
+                  <dt>open</dt>
+                  <dd>('open-top' 'open-right' 'open-bottom' 'open-left')</dd>
+                  <dt>transition</dt>
+                  <dd>all 0.3s ease</dd>
+                </dl>
+              </section>
+        
+              <section class="notes">
+                <h2>Notes</h2>
+                <ul>
+                  <li>Assign z-index values to menus for specifying which will overlap another.</li>
+                  <li>The offcanvas mixin actually calls offcanvasMulti internally and passes 0 for all values except the desired side.</li>
+                </ul>
+              </section>
+            </div>
+          </div>
+        </section>
+        <!-- endinject -->
+        <!-- inject:flipCard:html -->
+        <section id="flipCard" class="mixin">
+          <header>
+            <h2>flipCard</h2>
+            <p>
+              Flipcard is a two sided card that flips around either the X or Y axis.
+            </p>
+          </header>
+          <div class="tabs">
+            <div>
+              <span>Use</span>
+              <span>Params</span>
+              <span>Notes</span>
+              <span>Example</span>
+            </div>
+            <div>
+            
+              <section class="basic-use active">
+                <h3>Basic Use</h3>
+                <div>
+                  <div class='html'>
+                    <h4>HTML</h4>
+                    <pre><code>&lt;div class="my-card"&gt;<br>  &lt;div&gt;<br>    &lt;div&gt;front content&lt;/div&gt;<br>    &lt;div&gt;back content&lt;/div&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;</code></pre>
+                  </div>
+                  <div class='stylus'>
+                    <h4>Stylus</h4>
+                    <pre><code>.my-card<br>  flipCard()</code></pre>
+                  </div>
+                </div>
+                <div class='jquery'>
+                  <h4>jQuery</h4>
+                  <pre><code>$('.my-card').on('click', function (e) {<br>  $(e.currentTarget).toggleClass('flip');<br>})</code></pre>
+                </div>
+              </section>
+        
+              <section class="params">
+                <h2>Parameters and defaults</h2>
+                <p>flipCard(axis:Y, flip:'flip', speed:0.6s, perspective:1000)</p>
+                <dl>
+                  <dt>axis</dt>
+                  <dd>the axis about which the card rotates (X or Y)</dd>
+                  <dt>flip</dt>
+                  <dd>the class that causes the parent container to flip</dd>
+                  <dt>speed</dt>
+                  <dd>the speed it takes for the card to flip</dd>
+                  <dt>perspective</dt>
+                  <dd>css 3D perspective, the bigger the number, the further away it seems you are</dd>
+                </dl>
+              </section>
+        
+              <section class="notes">
+                <h2>Notes</h2>
+                <ul>
+                  <li>flipCard uses css3 3D transform (not supported by IE9)</li>
+                  <li>The first child of the parent element rotates inside of the parent</li>
+                </ul>
+              </section>
+        
+              <section class="example">
+                <h2>Example</h2>
+                <div class="my-flipcard">
+                  <div>
+                    <div><p>Front Content</p></div>
+                    <div><p>Back Content</p></div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+        
+        <!-- endinject -->
+        <!-- inject:toggle:html -->
+        <section id="toggle" class="mixin">
+          <header>
+            <h2>toggle</h2>
+            <p>
+              Toggle styles a checkbox as an on/off switch.  You can customize most aspects of it.  You can put a label on the switch, you can change the on/off text, and you can specify all the colors in both the on and off states.
+            </p>
+          </header>
+          <div class="tabs">
+            <div>
+              <span>Use</span>
+              <span>Params</span>
+              <span>Notes</span>
+              <span>Example</span>
+            </div>
+            <div>
+            
+              <section class="basic-use active">
+                <h3>Basic Use</h3>
+                <div>
+                  <div class='html'>
+                    <h4>HTML</h4>
+                    <pre><code>&lt;div class="my-toggle"&gt;<br>  &lt;input type="checkbox" id="my-setting"&gt;<br>  &lt;label for="my-setting"&gt;&lt;span&gt;Heater&lt;/span&gt;&lt;/label&gt;<br>&lt;/div&gt;</code></pre>
+                  </div>
+                  <div class='stylus'>
+                    <h4>Stylus</h4>
+                    <pre><code>.my-toggle<br>  toggle()</code></pre>
+                  </div>
+                </div>
+              </section>
+        
+              <section class="params">
+                <h2>Parameters and defaults</h2>
+                <p>toggle(width:8em, height:2.5em, text: ('OFF' 'ON'), switch:(#b2b3a1 #000), switchOn: (#b2b3a1 #000), off:(#bb9297 #000), on:(#29c910 #000), sideWidth: 0, shadow:1)</p>
+                <dl>
+                  <dt>width</dt>
+                  <dd>Toggle width</dd>
+                  <dt>height</dt>
+                  <dd>Toggle height</dd>
+                  <dt>text</dt>
+                  <dd>OFF/ON text</dd>
+                  <dt>switch</dt>
+                  <dd>(background-color [text-color]), colors for the moving part of the toggle</dd>
+                  <dt>switchOn</dt>
+                  <dd>(background-color text-color), optional alternate colors for the switch in on position</dd>
+                  <dt>off</dt>
+                  <dd>(background-color text-color), colors and content for the 'off' part of the toggle</dd>
+                  <dt>on</dt>
+                  <dd>(background-color text-color), colors and content for the 'on' part of the toggle</dd>
+                  <dt>sideWidth</dt>
+                  <dd>Width of the on/off parts.  When set to 0, mixin sets it to width/2.5.</dd>
+                  <dt>shadow</dt>
+                  <dd>inset shadow for on/off parts, set shadow to 0 to disable
+                </dl>
+              </section>
+        
+              <section class="notes">
+                <h2>Notes</h2>
+                <ul>
+                  <li>Checkbox must have an id that matches the 'for' attribute of label.  This is because checkbox is hidden and the switch is actually the label.  Setting the 'for' attribute allows us to toggle the checkbox when the label is clicked.</li>
+                  <li>The span element inside of the label is necessary.  This enables the mixin to vertically center the text.</li>
+                </ul>
+              </section>
+        
+              <section class="example">
+                <h2>Example</h2>
+                <div class="my-toggle">
+                  <input type="checkbox" id="my-setting">
+                  <label for="my-setting"><span>Fan</span></label>
+                </div>
+              </section>
+        
             </div>
           </div>
         </section>
         <!-- endinject -->
       </article>
-    </main>
+    </div>
   </div>
   <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
   <script src="public/app.js"></script>

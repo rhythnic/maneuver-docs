@@ -1,57 +1,69 @@
-<section id="flipcard">
-  <h2>Flipcard</h2>
-  <p class="description">
-    Flipcard is a two sided card that flips around either the X or Y axis.
-  </p>
-  <div class="flipcard1">
+<section id="flipCard" class="mixin">
+  <header>
+    <h2>flipCard</h2>
+    <p>
+      Flipcard is a two sided card that flips around either the X or Y axis.
+    </p>
+  </header>
+  <div class="tabs">
     <div>
-      <div><p>front content</p></div>
-      <div><p>back content</p></div>
-    </div>
-  </div>
-  <div class="code">
-    <div>
-      <h4>HTML</h4>
-<pre class="html"><code>
-&lt;div class="my-card"&gt;
-  &lt;div&gt;
-    &lt;div&gt;front content&lt;/div&gt;
-    &lt;div&gt;back content&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
+      <span>Use</span>
+      <span>Params</span>
+      <span>Notes</span>
+      <span>Example</span>
     </div>
     <div>
-      <h4>Stylus</h4>
-<pre class="stylus"><code>
-.my-card
-    flipCard()
-</code></pre>
-    </div>
-    <div>
-      <h4>JavaScript</h4>
-<pre class="js"><code class="js">
-$('.my-card').on('click', function (e) {
-  $(e.currentTarget).toggleClass('flip');
-})
-</code></pre>
-    </div>
-  </div> <!-- end of div.code -->
-  <div class="specification">
-    <h3>Specification</h3>
-    <div>
-      <div class="flipcard">
-        <h4>flipCard()</h4>
-        <h5>parameters and defaults:</h5>
+    
+      <section class="basic-use active">
+        <h3>Basic Use</h3>
+        <div>
+          <div class='html'>
+            <h4>HTML</h4>
+            <pre><code>&lt;div class="my-card"&gt;<br>  &lt;div&gt;<br>    &lt;div&gt;front content&lt;/div&gt;<br>    &lt;div&gt;back content&lt;/div&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;</code></pre>
+          </div>
+          <div class='stylus'>
+            <h4>Stylus</h4>
+            <pre><code>.my-card<br>  flipCard()</code></pre>
+          </div>
+        </div>
+        <div class='jquery'>
+          <h4>jQuery</h4>
+          <pre><code>$('.my-card').on('click', function (e) {<br>  $(e.currentTarget).toggleClass('flip');<br>})</code></pre>
+        </div>
+      </section>
+
+      <section class="params">
+        <h2>Parameters and defaults</h2>
+        <p>flipCard(axis:Y, flip:'flip', speed:0.6s, perspective:1000)</p>
         <dl>
-          <dt>axis:Y</dt>
+          <dt>axis</dt>
           <dd>the axis about which the card rotates (X or Y)</dd>
-          <dt>flip: 'flip'</dt>
+          <dt>flip</dt>
           <dd>the class that causes the parent container to flip</dd>
-          <dt>speed: 0.6s</dt>
+          <dt>speed</dt>
           <dd>the speed it takes for the card to flip</dd>
-          <dt>perspective: 1000</dt>
+          <dt>perspective</dt>
           <dd>css 3D perspective, the bigger the number, the further away it seems you are</dd>
         </dl>
-      </div>
+      </section>
+
+      <section class="notes">
+        <h2>Notes</h2>
+        <ul>
+          <li>flipCard uses css3 3D transform (not supported by IE9)</li>
+          <li>The first child of the parent element rotates inside of the parent</li>
+        </ul>
+      </section>
+
+      <section class="example">
+        <h2>Example</h2>
+        <div class="my-flipcard">
+          <div>
+            <div><p>Front Content</p></div>
+            <div><p>Back Content</p></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
 </section>

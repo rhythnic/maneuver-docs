@@ -1,0 +1,68 @@
+<section id="offcanvasMulti" class="mixin">
+  <header>
+    <h2>offcanvasMulti</h2>
+    <p>
+      The offcanvasMulti mixin is similar to offcanvas, except that you can create up to 4 offcanvas menus inside of the parent element.
+    </p>
+  </header>
+  <div class="tabs">
+    <div>
+      <span>Use</span>
+      <span>Params</span>
+      <span>Notes</span>
+    </div>
+    <div>
+    
+      <section class="basic-use active">
+        <h3>Basic Use</h3>
+        <div>
+          <div class='html'>
+            <h4>HTML</h4>
+            <pre><code>&lt;div class="container"&gt;<br>  &lt;div class="menu-left"&gt;Left menu&lt;/div&gt;<br>  &lt;div class="menu-right"&gt;Right menu&lt;/div&gt;<br>  &lt;div class="content"&gt;<br>    &lt;button data-menu="left"&gt;Toggle left menu&lt;/button&gt;<br>    &lt;button data-menu="right"&gt;Toggle right menu&lt;/button&gt;<br>    &lt;article&gt;My content&lt;/article&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;</code></pre>
+          </div>
+          <div class='stylus'>
+            <h4>Stylus</h4>
+            <pre><code>.container<br>  offcanvasMulti()</code></pre>
+          </div>
+        </div>
+        <div class='jquery'>
+          <h4>jQuery</h4>
+          <pre><code>$('button').on('click', function (e) {<br>  var menu = $(this).data('menu');<br>  $('.container').toggleClass('open-'+menu);<br>})</code></pre>
+        </div>
+      </section>
+
+      <section class="params">
+        <h2>Parameters and defaults</h2>
+        <p>Please refer to <a href="#offcanvas">offcanvas</a> for an explanation of each parameter.  Most parameters in offcanvasMulti
+           are an array of 4 values. In traditional css shorthand style, the order of the array (top right bottom left).
+           The default values are listed below.</p>
+        <dl>
+          <dt>size</dt>
+          <dd>(0 15em 0 15em)</dd>
+          <dt>share</dt>
+          <dd>(0 40em 0 40em)</dd>
+          <dt>show</dt>
+          <dd>(0 80em 0 80em)</dd>
+          <dt>push</dt>
+          <dd>(0 0 0 0)</dd>
+          <dt>menu</dt>
+          <dd>('.menu-top' '.menu-right' '.menu-bottom' '.menu-left')</dd>
+          <dt>content</dt>
+          <dd>'.content'</dd>
+          <dt>open</dt>
+          <dd>('open-top' 'open-right' 'open-bottom' 'open-left')</dd>
+          <dt>transition</dt>
+          <dd>all 0.3s ease</dd>
+        </dl>
+      </section>
+
+      <section class="notes">
+        <h2>Notes</h2>
+        <ul>
+          <li>Assign z-index values to menus for specifying which will overlap another.</li>
+          <li>The offcanvas mixin actually calls offcanvasMulti internally and passes 0 for all values except the desired side.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</section>

@@ -13,9 +13,10 @@ html, body
   height 100%
   background lighten(yellow, 90%)
   
-article
-  max-width 100em
+article, #about
+  max-width 88em
   margin 0 auto
+
 
 pre
   pre()
@@ -24,20 +25,25 @@ code
 
 dt
   font-weight bold
-
-
-
+  margin-top 1em
 
 
 /**********************************
     Style classes
 **********************************/
 
-.description
-  background #d8d8d8
+.hide
+  hide()
+
++above(tablet)
+  .html, .stylus
+    col(1/2)
+
+.jquery
+  clear both
 
 section.mixin
-  margin 1em
+  margin-bottom 3em
   header
     h2
       margin 0
@@ -75,15 +81,6 @@ section.mixin
     position relative
     top 0.05em
     color #000
-  
-.notes
-  box-sizing border-box
-  padding 1em
-  +above(laptop)
-    padding 2em
-    margin-top 3em
-  h3
-    margin 0
   
 /**********************************
     Wrap

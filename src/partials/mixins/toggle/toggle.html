@@ -1,85 +1,74 @@
-<section id="toggle">
-  <h2>Toggle</h2>
-  <div class="heat-toggle">
-    <input type="checkbox" id="heat-setting">
-    <label for="heat-setting"><span>Heater</span></label>
-  </div>
-  <p class="description">
-    Toggle styles a checkbox as an on/off switch.  You can customize most aspects of it.  You can put a label on the switch, you can change the on/off text, and you can specify all the colors in both the on and off states.
-  </p>
-  <div class="code">
+<section id="toggle" class="mixin">
+  <header>
+    <h2>toggle</h2>
+    <p>
+      Toggle styles a checkbox as an on/off switch.  You can customize most aspects of it.  You can put a label on the switch, you can change the on/off text, and you can specify all the colors in both the on and off states.
+    </p>
+  </header>
+  <div class="tabs">
     <div>
-      <h4>HTML</h4>
-<pre class="html"><code>
-&lt;div class="my-toggle"&gt;
-  &lt;input type="checkbox" id="my-setting"&gt;
-  &lt;label for="my-setting"&gt;&lt;span&gt;Heater&lt;/span&gt;&lt;/label&gt;
-&lt;/div&gt;
-</code></pre>
+      <span>Use</span>
+      <span>Params</span>
+      <span>Notes</span>
+      <span>Example</span>
     </div>
     <div>
-      <h4>Stylus</h4>
-<pre class="stylus"><code>
-.my-toggle
-  toggle()
-</code></pre>
-    </div>
-  </div> <!-- end of div.code -->
-  <div class="specification">
-    <h3>Specification</h3>
-    <div>
-      <div class="toggle">
-        <h4>toggle()</h4>
-        <h5>parameters and defaults:</h5>
+    
+      <section class="basic-use active">
+        <h3>Basic Use</h3>
+        <div>
+          <div class='html'>
+            <h4>HTML</h4>
+            <pre><code>&lt;div class="my-toggle"&gt;<br>  &lt;input type="checkbox" id="my-setting"&gt;<br>  &lt;label for="my-setting"&gt;&lt;span&gt;Heater&lt;/span&gt;&lt;/label&gt;<br>&lt;/div&gt;</code></pre>
+          </div>
+          <div class='stylus'>
+            <h4>Stylus</h4>
+            <pre><code>.my-toggle<br>  toggle()</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="params">
+        <h2>Parameters and defaults</h2>
+        <p>toggle(width:8em, height:2.5em, text: ('OFF' 'ON'), switch:(#b2b3a1 #000), switchOn: (#b2b3a1 #000), off:(#bb9297 #000), on:(#29c910 #000), sideWidth: 0, shadow:1)</p>
         <dl>
-          <dt>switch: (#b2b3a1 #000)</dt>
+          <dt>width</dt>
+          <dd>Toggle width</dd>
+          <dt>height</dt>
+          <dd>Toggle height</dd>
+          <dt>text</dt>
+          <dd>OFF/ON text</dd>
+          <dt>switch</dt>
           <dd>(background-color [text-color]), colors for the moving part of the toggle</dd>
-          <dt>switch_on:  (#b2b3a1 #000)</dt>
+          <dt>switchOn</dt>
           <dd>(background-color text-color), optional alternate colors for the switch in on position</dd>
-          <dt>off: (#bb9297 #000 'OFF')</dt>
-          <dd>(background-color text-color [content]), colors and content for the 'off' part of the toggle</dd>
-          <dt>on:  (#29c910 [inherit 'ON'])</dt>
-          <dd>(background-color text-color [content]), colors and content for the 'on' part of the toggle</dd>
-          <dt>side_width: (total_width / 2.5)</dt>
-          <dd>width of the on/off parts</dd>
-          <dt>shadow: 1</dt>
-          <dd>inset shadow for on/off parts, set shadow to 0 to disable</dd>
+          <dt>off</dt>
+          <dd>(background-color text-color), colors and content for the 'off' part of the toggle</dd>
+          <dt>on</dt>
+          <dd>(background-color text-color), colors and content for the 'on' part of the toggle</dd>
+          <dt>sideWidth</dt>
+          <dd>Width of the on/off parts.  When set to 0, mixin sets it to width/2.5.</dd>
+          <dt>shadow</dt>
+          <dd>inset shadow for on/off parts, set shadow to 0 to disable
         </dl>
-      </div>
-      <div class="notes">
-        <h3>Things to note:</h3>
+      </section>
+
+      <section class="notes">
+        <h2>Notes</h2>
         <ul>
           <li>Checkbox must have an id that matches the 'for' attribute of label.  This is because checkbox is hidden and the switch is actually the label.  Setting the 'for' attribute allows us to toggle the checkbox when the label is clicked.</li>
-          <li>The span element inside of the label is necessary.  This allows us to vertically center the text.</li>
+          <li>The span element inside of the label is necessary.  This enables the mixin to vertically center the text.</li>
         </ul>
-      </div>
-    </div>
-  </div>
-  <div class="examples">
-    <h3>Examples</h3>
-    <div class="toggle-examples">
-      <div class="toggle-1">
-      <p>
-<pre><code>toggle(switch: (#6C7F7E, #000), switch_on: (lighten(#6C7F7E, 50%) #fff), off: (#DC3522 #000 'NO'), on: (#D9CB9E #fff 'YES'))</code></pre>
-      </p>
-      <div class="switch">
-        <input type="checkbox" id="switch-1">
-        <label for="switch-1"><span>Spam Me</span></label>
-      </div>
-    </div>
-    <div class="toggle-2">
-      <p>
-<pre><code>.my-toggle
-  width 15em
-  height 5em
-  font-size: 2em
-  toggle(side_width: 3em)
-</code></pre>
-      </p>
-      <div class="switch">
-        <input type="checkbox" id="switch-2">
-        <label for="switch-2"><span>Allow non-friends to view my photos</span></label>
-      </div>
+      </section>
+
+      <section class="example">
+        <h2>Example</h2>
+        <div class="my-toggle">
+          <input type="checkbox" id="my-setting">
+          <label for="my-setting"><span>Fan</span></label>
+        </div>
+      </section>
+
     </div>
   </div>
 </section>
