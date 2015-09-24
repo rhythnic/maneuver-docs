@@ -1,7 +1,7 @@
 @require 'main'
 
 normalize-css()
-typography()
+//typography()
 
 /**********************************
     Global settings
@@ -11,7 +11,7 @@ html, body
   padding 0
   margin 0
   height 100%
-  background lighten(yellow, 90%)
+  background lightGray
   
 article, #about
   max-width 88em
@@ -26,6 +26,13 @@ code
 dt
   font-weight bold
   margin-top 1em
+  
+a
+  text-decoration none
+  color darken(blue, 10%)
+  transition: color 0.1s linear
+  &:hover
+    color pink
 
 
 /**********************************
@@ -44,26 +51,30 @@ dt
 
 section.mixin
   margin-bottom 3em
+  background #fff
+  padding 1em
+  shadow(3)
   header
     h2
-      margin 0
+      margin 0 1em 1em 0
+      display inline-block
+      border-bottom 1px solid #888
+      padding 0 5em 0.3em 2em
     p
       margin-top 0
   .tabs
     margin-top 1em
     tabs()
     & > div:first-child span
-      background pink
-      margin 0 0.5em 0 0
+      margin 0.5em 0.5em 0.5em 0
       padding 0.3em 0.6em
       +above(mobile)
         padding 0.5em 1em
-        margin 0 1em
+        margin 0.5em 1em
       &.active
-        background #98CDDD
+        border-bottom 2px solid pink
     & > div:last-child
       background #98CDDD
-      shadow(3)
       & > section
         padding 1em
 
@@ -71,16 +82,17 @@ section.mixin
 
 .menu-btn
   padding: 0 0.2em 0.2em
-  border-radius 0.2em
   position absolute
   z-index 1000
   border none
-  box-shadow 2px 2px 2px gray
+  outline none
+  background transparent
   i
     font-size 2.3em
     position relative
     top 0.05em
     color #000
+    background transparent
   
 /**********************************
     Wrap
@@ -88,15 +100,18 @@ section.mixin
 
 .wrap
   height 100%
-  offcanvas(size: 20em, show: 0, share: 50em)
+  offcanvas(size: 20em, show: 0, share: 50em, transition: all 0.2s ease-out)
   & > .menu
     z-index 10
   &.open
     #toggle-left-offcanvas
-      left 20em
+      left 17em
+  .content
+    padding 0 1em
+    +above(mobile)
+      padding 0 2em
 #toggle-left-offcanvas
   position fixed
-  background #fff
-  transition all 0.3s ease
+  transition all 0.2s ease-out
   left 0
   

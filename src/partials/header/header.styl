@@ -3,10 +3,20 @@
 #app-header
   overflow hidden
   text-align: center
+  position fixed
+  height 45px
+  width 100%
+  margin 0 -1em
+  background lightGray
+  border-bottom 3px solid pink
+  z-index 2
+  +above(tablet)
+    position relative
+    height auto
   h1
     display inline-block
   h1
-    margin 0.3em 0.5em 0em 1.5em
+    margin 0.15em 0.5em 0em 1.5em
   +above(mobile)
     h1
       margin-right 1em
